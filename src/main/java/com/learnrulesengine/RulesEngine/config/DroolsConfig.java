@@ -11,17 +11,6 @@ import org.springframework.context.annotation.Configuration;
 public class DroolsConfig {
     @Bean
     public KieContainer kieContainer(){
-        // entry point to Drools API - used to access everything in Drools engine
-        KieServices kieServices = KieServices.Factory.get();
-        // in memory file sys for our rule file
-        KieFileSystem kfs = kieServices.newKieFileSystem();
-        kfs.write(ResourceFactory.newClassPathResource("rules/discount.drl"));
-        KieBuilder kieBuilder = kieServices.newKieBuilder(kfs).buildAll();
-        if (kieBuilder.getResults().hasMessages(Message.Level.ERROR)) {
-            throw new RuntimeException("Error building Drools rules: " + kieBuilder.getResults());
-        }
-        KieRepository kieRepository = kieServices.getRepository();
-        ReleaseId releaseId = kieRepository.getDefaultReleaseId();
-        return kieServices.newKieContainer(releaseId);
+        return KieServices.Factory.get().getKieClasspathContainer();
     }
 }

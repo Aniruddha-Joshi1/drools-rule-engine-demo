@@ -20,11 +20,17 @@ public class DiscountService {
     }
 
     public Customer applyDicount(CustomerDTO customer){
-        KieSession kieSession = kieContainer.newKieSession();
-        kieSession.insert(customer);
-        kieSession.fireAllRules();
-        kieSession.dispose();
-        Customer neededCustomer = new Customer(customer.getDiscount(), customer.getPurchaseAmount(), customer.getType());
+        KieSession discountSession = kieContainer.newKieSession("discountKSession");
+        discountSession.insert(customer);
+        discountSession.fireAllRules();
+        discountSession.dispose();
+
+        KieSession specialSession = kieContainer.newKieSession("specialCustomerKSession");
+        specialSession.insert(customer);
+        specialSession.fireAllRules();
+        specialSession.dispose();
+
+        Customer neededCustomer = new Customer(customer.getDiscount(), customer.getPurchaseAmount(), customer.getType(), customer.getStatus());
         customerRepository.saveAndFlush(neededCustomer);
         return neededCustomer;
     }

@@ -4,6 +4,7 @@ public class CustomerDTO {
     private String type;
     private double purchaseAmount;
     private int discount;
+    private String status;
 
     public CustomerDTO() {
     }
@@ -30,5 +31,13 @@ public class CustomerDTO {
 
     public void setDiscount(int discount) {
         this.discount = discount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -1,3 +1,5 @@
+package rules.discount;
+
 import com.learnrulesengine.RulesEngine.DTO.CustomerDTO;
 
 rule "Give 10% discount to premium customer"

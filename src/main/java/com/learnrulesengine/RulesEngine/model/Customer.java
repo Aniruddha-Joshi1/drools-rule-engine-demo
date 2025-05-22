@@ -17,14 +17,17 @@ public class Customer {
 
     private int discount;
 
+    private String status;
+
     public Customer(){
 
     }
 
-    public Customer(int discount, double purchaseAmount, String type) {
+    public Customer(int discount, double purchaseAmount, String type, String status) {
         this.discount = discount;
         this.purchaseAmount = purchaseAmount;
         this.type = type;
+        this.status = status;
     }
 
     public String getType() {
@@ -49,6 +52,14 @@ public class Customer {
 
     public void setPurchaseAmount(double purchaseAmount) {
         this.purchaseAmount = purchaseAmount;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     @Override

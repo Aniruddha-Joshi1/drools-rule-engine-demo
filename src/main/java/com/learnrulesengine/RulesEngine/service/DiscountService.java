@@ -30,8 +30,8 @@ public class DiscountService {
         specialSession.fireAllRules();
         specialSession.dispose();
 
-        Customer neededCustomer = new Customer(customer.getDiscount(), customer.getPurchaseAmount(), customer.getType(), customer.getStatus());
-        customerRepository.saveAndFlush(neededCustomer);
+        Customer neededCustomer = new Customer(customer);
+        customerRepository.save(neededCustomer);
         return neededCustomer;
     }
 }

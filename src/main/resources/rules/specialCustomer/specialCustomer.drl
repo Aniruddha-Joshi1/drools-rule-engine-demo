@@ -2,6 +2,7 @@ package rules.specialCustomer;
 import com.learnrulesengine.RulesEngine.DTO.CustomerDTO;
 
 rule "Set customer as GOLD if purchase amount > 1000"
+salience 100
     when
         $customer: CustomerDTO(purchaseAmount > 1000)
     then
@@ -10,8 +11,9 @@ rule "Set customer as GOLD if purchase amount > 1000"
 end
 
 rule "Set customer as SILVER if purchase amount is > 500"
+salience 50
     when
-        $customer: CustomerDTO(purchaseAmount > 500)
+        $customer: CustomerDTO(purchaseAmount > 500, purchaseAmount <= 1000)
     then
         $customer.setStatus("SILVER");
         update($customer)

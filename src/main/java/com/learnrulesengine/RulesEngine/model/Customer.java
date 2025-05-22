@@ -1,5 +1,6 @@
 package com.learnrulesengine.RulesEngine.model;
 
+import com.learnrulesengine.RulesEngine.DTO.CustomerDTO;
 import jakarta.persistence.*;
 
 import java.util.UUID;
@@ -21,6 +22,13 @@ public class Customer {
 
     public Customer(){
 
+    }
+
+    public Customer(CustomerDTO customer){
+        this.discount = customer.getDiscount();
+        this.purchaseAmount = customer.getPurchaseAmount();
+        this.type = customer.getType();
+        this.status = customer.getStatus();
     }
 
     public Customer(int discount, double purchaseAmount, String type, String status) {

@@ -1,9 +1,31 @@
 package com.learnrulesengine.RulesEngine.model;
 
+import jakarta.persistence.*;
+
+import java.util.UUID;
+
+@Entity
+@Table(name = "customer")
 public class Customer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
     private String type;
+
     private double purchaseAmount;
+
     private int discount;
+
+    public Customer(){
+
+    }
+
+    public Customer(int discount, double purchaseAmount, String type) {
+        this.discount = discount;
+        this.purchaseAmount = purchaseAmount;
+        this.type = type;
+    }
 
     public String getType() {
         return type;

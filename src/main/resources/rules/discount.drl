@@ -1,8 +1,8 @@
-import com.learnrulesengine.RulesEngine.model.Customer;
+import com.learnrulesengine.RulesEngine.DTO.CustomerDTO;
 
 rule "Give 10% discount to premium customer"
     when
-        $customer : Customer(type == "PREMIUM", purchaseAmount > 100)
+        $customer : CustomerDTO(type == "PREMIUM", purchaseAmount > 100)
     then
         $customer.setDiscount(10);
         update($customer);
@@ -10,7 +10,7 @@ end
 
 rule "Give 5% discount to regular customer"
     when
-        $customer : Customer(type == "REGULAR", purchaseAmount > 100)
+        $customer : CustomerDTO(type == "REGULAR", purchaseAmount > 100)
     then
         $customer.setDiscount(5);
        update($customer);
